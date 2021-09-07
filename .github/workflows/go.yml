@@ -21,8 +21,10 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: ansible-lint
-      uses: ansible/ansible-lint-action@v4.1.0.post0
+    - name: Run golangci-lint
+      uses: golangci/golangci-lint-action@v2.5.2
+      with:
+        github-token: ${{ github.token }}
   
     - name: Test
       run: go test -v ./...
@@ -34,3 +36,5 @@ jobs:
       uses: tommy-muehle/go-mnd@v2.2.0
       with:
         args: -h
+        
+    
